@@ -1,0 +1,24 @@
+source:
+https://forum.xfce.org/viewtopic.php?id=9711
+
+Set file permission: chmod +x thunar_newfile.sh
+
+Then in Thunar create custom action:
+"Edit" => "Configure custom actions..."
+
+Name: Create New File
+Description: Create new file using zenity
+Command: ~/thunar_newfile.sh
+(under Appearance Conditons tab)
+File Pattern: *
+(then select all of the "Appears if selection contains")
+
+Then open your ~/.config/Thunar/uca.xml and find where you have name "<name>Create New File</name>" under it you should see <unique-id> remember the id.
+
+Then open your ~/.config/Thunar/accels.scm file and uncomment your (gtk_accel_path "<Actions>/ThunarActions/uca-action-YOUR-UNIQUE-ID" "") after that apply shortcut key, I used "<Primary><Shift>f"
+
+So in the end it should look simular to this; (gtk_accel_path "<Actions>/ThunarActions/uca-action-1234567890-2" "<Primary><Shift>f")
+
+Log-Off, and Log back in and open your Thunar to try this new shortcut :-)
+
+Now when I press SHIFT+CTRL+F or CTRL+SHIFT+F I get dialog like this;
